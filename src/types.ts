@@ -1,8 +1,3 @@
-export type VRChatAPIBaseUrl =
-  | "https://api.vrchat.cloud/api/1/"
-  | "https://dev-api.vrchat.cloud/api/1/"
-  | "https://beta-api.vrchat.cloud/api/1/";
-
 export interface VRChatDynamicWorldRow {
   name: string;
   tag: string;

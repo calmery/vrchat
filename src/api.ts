@@ -1,10 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 import { VRChatConfig } from "./types";
-import { UrlBuilder } from "./urlBuilder";
+import urlBuilder from "./urlBuilder";
 
-export const getVRChatConfig = async (
-  urlBuilder: UrlBuilder
-): Promise<VRChatConfig | null> => {
+export const getVRChatConfig = async (): Promise<VRChatConfig | null> => {
   try {
     const url = urlBuilder.config();
     const response: AxiosResponse<VRChatConfig> = await axios.get(url);

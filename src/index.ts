@@ -1,8 +1,7 @@
 import { getVRChatConfig } from "./api";
-import { urlBuilder } from "./urlBuilder";
 
 const main = async (): Promise<void> => {
-  const config = await getVRChatConfig(urlBuilder);
+  const config = await getVRChatConfig();
 
   if (config === null) {
     return;
