@@ -1,0 +1,69 @@
+version: 2
+
+jobs:
+  setup:
+    docker:
+      - image: circleci/node:10.15.3
+
+    working_directory: ~/node
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - dependencies-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+
+      - run: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+
+      - persist_to_workspace:
+          root: ~/
+          paths: ./*
+
+  test:
+    docker:
+      - image: circleci/node:10.15.3
+
+    working_directory: ~/node
+
+    steps:
+      - attach_workspace:
+          at: ~/
+
+      - run: npm test
+
+      - persist_to_workspace:
+          root: ~/
+          paths: ./*
+
+  build:
+    docker:
+      - image: circleci/node:10.15.3
+
+    working_directory: ~/node
+
+    steps:
+      - attach_workspace:
+          at: ~/
+
+      - run: npm run build
+
+workflows:
+  version: 2
+
+  test-and-build:
+    jobs:
+      - setup
+
+      - test:
+          requires:
+            - setup
+
+      - build:
+          requires:
+            - test
