@@ -1,4 +1,15 @@
-export const message = "Hello World";
+import { getVRChatConfig } from "./api";
+import { urlBuilder } from "./urlBuilder";
 
-// eslint-disable-next-line no-console
-console.log(message);
+const main = async (): Promise<void> => {
+  const config = await getVRChatConfig(urlBuilder);
+
+  if (config === null) {
+    return;
+  }
+
+  // eslint-disable-next-line no-console
+  console.log("API Key :", config.apiKey);
+};
+
+main();
