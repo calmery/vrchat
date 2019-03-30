@@ -1,7 +1,7 @@
-import { getVRChatConfig } from "./api";
+import { getConfig } from "./api";
 
 const main = async (): Promise<void> => {
-  const config = await getVRChatConfig();
+  const config = await getConfig();
 
   if (config === null) {
     return;
