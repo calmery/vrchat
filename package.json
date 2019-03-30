@@ -2,5 +2,8 @@
   "engine": {
     "node": "10.15.3",
     "npm": "6.9.0"
+  },
+  "devDependencies": {
+    "typescript": "3.4.1"
   }
 }
