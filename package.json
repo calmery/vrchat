@@ -65,6 +65,7 @@
   },
   "scripts": {
     "build": "rimraf build && tsc",
+    "prepare": "tsc",
     "prettify": "eslint --fix src/**/*.ts tests/**/*.ts",
     "test": "jest --coverage",
     "watch": "rimraf build && tsc --watch"
