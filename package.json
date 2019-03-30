@@ -4,19 +4,35 @@
     "npm": "6.9.0"
   },
   "devDependencies": {
+    "@types/jest": "24.0.11",
     "@typescript-eslint/eslint-plugin": "1.5.0",
     "@typescript-eslint/parser": "1.5.0",
     "eslint": "5.16.0",
     "eslint-config-prettier": "4.1.0",
     "eslint-plugin-prettier": "3.0.1",
     "husky": "1.3.1",
+    "jest": "24.5.0",
     "lint-staged": "8.1.5",
     "prettier": "1.16.4",
+    "ts-jest": "24.0.0",
     "typescript": "3.4.1"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
+    }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts"
+    ],
+    "roots": [
+      "<rootDir>/tests"
+    ],
+    "testURL": "http://localhost/",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
     }
   },
   "lint-staged": {
@@ -26,6 +42,7 @@
     ]
   },
   "scripts": {
-    "prettify": "eslint --fix src/**/*.ts"
+    "prettify": "eslint --fix src/**/*.ts tests/**/*.ts",
+    "test": "jest --coverage"
   }
 }
