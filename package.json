@@ -1,8 +1,9 @@
 {
-  "engine": {
-    "node": "10.15.3",
-    "npm": "6.9.0"
-  },
+  "name": "vrchat",
+  "description": "Unofficial VRChat API",
+  "version": "0.0.0",
+  "author": "Marei Kikukawa <contact@marei.jp>",
+  "bugs": "https://github.com/calmery/VRChatJS/issues",
   "dependencies": {
     "axios": "0.18.0"
   },
@@ -21,6 +22,14 @@
     "ts-jest": "24.0.0",
     "typescript": "3.3.3333"
   },
+  "engine": {
+    "node": "10.15.3",
+    "npm": "6.9.0"
+  },
+  "files": [
+    "build"
+  ],
+  "homepage": "https://github.com/calmery/VRChatJS",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -39,11 +48,20 @@
       "^.+\\.ts$": "ts-jest"
     }
   },
+  "keywords": [
+    "vrchat"
+  ],
+  "license": "MIT",
   "lint-staged": {
     "**/*.ts": [
       "npm run prettify",
       "git add"
     ]
+  },
+  "main": "build",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calmery/VRChatJS.git"
   },
   "scripts": {
     "build": "rimraf build && tsc",
