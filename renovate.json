@@ -1,0 +1,135 @@
+{
+  "vulnerabilityAlerts": {
+    "labels": [
+      "renovate",
+      "security"
+    ]
+  },
+  "major": {
+    "labels": [
+      "renovate",
+      "major"
+    ]
+  },
+  "minor": {
+    "labels": [
+      "renovate",
+      "minor"
+    ]
+  },
+  "patch": {
+    "labels": [
+      "renovate",
+      "patch"
+    ]
+  },
+  "labels": [
+    "renovate"
+  ],
+  "baseBranches": [
+    "master"
+  ],
+  "packageRules": [
+    {
+      "groupName": "eslint and prettier",
+      "packagePatterns": [
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser",
+        "eslint",
+        "eslint-config-prettier",
+        "eslint-plugin-prettier",
+        "prettier"
+      ],
+      "labels": [
+        "renovate",
+        "devDependencies"
+      ],
+      "major": {
+        "labels": [
+          "renovate",
+          "devDependencies",
+          "major"
+        ]
+      },
+      "minor": {
+        "labels": [
+          "renovate",
+          "devDependencies",
+          "minor"
+        ]
+      },
+      "patch": {
+        "labels": [
+          "renovate",
+          "devDependencies",
+          "patch"
+        ]
+      }
+    },
+    {
+      "groupName": "jest",
+      "packagePatterns": [
+        "@types/jest",
+        "jest",
+        "ts-jest"
+      ],
+      "labels": [
+        "renovate",
+        "devDependencies"
+      ],
+      "major": {
+        "labels": [
+          "renovate",
+          "devDependencies",
+          "major"
+        ]
+      },
+      "minor": {
+        "labels": [
+          "renovate",
+          "devDependencies",
+          "minor"
+        ]
+      },
+      "patch": {
+        "labels": [
+          "renovate",
+          "devDependencies",
+          "patch"
+        ]
+      }
+    },
+    {
+      "groupName": "git hooks",
+      "packagePatterns": [
+        "husky",
+        "lint-staged"
+      ],
+      "labels": [
+        "renovate",
+        "devDependencies"
+      ],
+      "major": {
+        "labels": [
+          "renovate",
+          "devDependencies",
+          "major"
+        ]
+      },
+      "minor": {
+        "labels": [
+          "renovate",
+          "devDependencies",
+          "minor"
+        ]
+      },
+      "patch": {
+        "labels": [
+          "renovate",
+          "devDependencies",
+          "patch"
+        ]
+      }
+    }
+  ]
+}
