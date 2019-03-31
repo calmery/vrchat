@@ -12,7 +12,7 @@ const generateAxiosInstanceByCookie = (cookie: string[]) => {
   });
 };
 
-export const getConfig = async (): Promise<VRChatConfig | null> => {
+const getConfig = async (): Promise<VRChatConfig | null> => {
   try {
     const response: AxiosResponse<VRChatConfig> = await requestBuilder.config();
 
@@ -20,6 +20,16 @@ export const getConfig = async (): Promise<VRChatConfig | null> => {
   } catch {
     return null;
   }
+};
+
+export const getAPIKey = async (): Promise<string | null> => {
+  const config = await getConfig();
+
+  if (config === null) {
+    return null;
+  }
+
+  return config.apiKey;
 };
 
 export const login = async (
