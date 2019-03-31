@@ -1,14 +1,14 @@
-import { getConfig } from "./api";
+import { getAPIKey } from "./api";
 
 const main = async (): Promise<void> => {
-  const config = await getConfig();
+  const apiKey = await getAPIKey();
 
-  if (config === null) {
+  if (apiKey === null) {
     return;
   }
 
   // eslint-disable-next-line no-console
-  console.log("API Key :", config.apiKey);
+  console.log("API Key :", apiKey);
 };
 
 main();
