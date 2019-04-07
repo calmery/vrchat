@@ -1,5 +1,6 @@
 import { AxiosInstance } from "axios";
-import { login, logout, requests } from "./api";
+import { login, logout } from "./api";
+import { generateRequestURL } from "./requestBuilder";
 export { getAPIKey } from "./api";
 
 export class VRChat {
@@ -31,24 +32,40 @@ export class VRChat {
   }
 
   get(endpoint: string, params?: { [key: string]: string | number | boolean }) {
-    return requests.get(this.axiosInstance, endpoint, params);
+    if (this.axiosInstance === null) {
+      throw new Error("Authentication required");
+    }
+
+    return this.axiosInstance.get(generateRequestURL(endpoint), { params });
   }
 
   post(
     endpoint: string,
     params?: { [key: string]: string | number | boolean }
   ) {
-    return requests.post(this.axiosInstance, endpoint, params);
+    if (this.axiosInstance === null) {
+      throw new Error("Authentication required");
+    }
+
+    return this.axiosInstance.post(generateRequestURL(endpoint), { params });
   }
 
   put(endpoint: string, params?: { [key: string]: string | number | boolean }) {
-    return requests.put(this.axiosInstance, endpoint, params);
+    if (this.axiosInstance === null) {
+      throw new Error("Authentication required");
+    }
+
+    return this.axiosInstance.put(generateRequestURL(endpoint), { params });
   }
 
   delete(
     endpoint: string,
     params?: { [key: string]: string | number | boolean }
   ) {
-    return requests.delete(this.axiosInstance, endpoint, params);
+    if (this.axiosInstance === null) {
+      throw new Error("Authentication required");
+    }
+
+    return this.axiosInstance.delete(generateRequestURL(endpoint), { params });
   }
 }
