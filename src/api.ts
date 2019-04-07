@@ -47,6 +47,4 @@ export const login = async (
   return generateAxiosInstanceByCookie(headers["set-cookie"]);
 };
 
-export const logout = async (axiosInstance: AxiosInstance) => {
-  await requestBuilder.logout(axiosInstance);
-};
+export const logout = requestBuilder.logout;
