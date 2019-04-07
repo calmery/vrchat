@@ -2,6 +2,7 @@ import axios, { AxiosResponse, AxiosInstance } from "axios";
 import { VRChatConfig } from "./types";
 import * as requestBuilder from "./requestBuilder";
 import { VRCHAT_API_BASE_URL } from "./constants";
+import { generateRequestURL } from "./requestBuilder";
 
 const generateAxiosInstanceByCookie = (cookie: string[]) => {
   return axios.create({
@@ -19,6 +20,56 @@ const getConfig = async (): Promise<VRChatConfig | null> => {
     return response.data;
   } catch {
     return null;
+  }
+};
+
+export const requests = {
+  get: async (
+    axiosInstance: AxiosInstance | null,
+    endpoint: string,
+    params?: { [key: string]: string | number | boolean }
+  ) => {
+    if (axiosInstance === null) {
+      throw new Error("Authentication required");
+    }
+
+    return axiosInstance.get(generateRequestURL(endpoint), { params });
+  },
+
+  post: async (
+    axiosInstance: AxiosInstance | null,
+    endpoint: string,
+    params?: { [key: string]: string | number | boolean }
+  ) => {
+    if (axiosInstance === null) {
+      throw new Error("Authentication required");
+    }
+
+    return axiosInstance.post(generateRequestURL(endpoint), { params });
+  },
+
+  put: async (
+    axiosInstance: AxiosInstance | null,
+    endpoint: string,
+    params?: { [key: string]: string | number | boolean }
+  ) => {
+    if (axiosInstance === null) {
+      throw new Error("Authentication required");
+    }
+
+    return axiosInstance.put(generateRequestURL(endpoint), { params });
+  },
+
+  delete: async (
+    axiosInstance: AxiosInstance | null,
+    endpoint: string,
+    params?: { [key: string]: string | number | boolean }
+  ) => {
+    if (axiosInstance === null) {
+      throw new Error("Authentication required");
+    }
+
+    return axiosInstance.delete(generateRequestURL(endpoint), { params });
   }
 };
 

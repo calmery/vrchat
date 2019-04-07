@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { login, logout } from "./api";
+import { login, logout, requests } from "./api";
 export { getAPIKey } from "./api";
 
 export class VRChat {
@@ -44,7 +44,25 @@ export class VRChat {
     return true;
   }
 
-  getAxiosInstance() {
-    return this.axiosInstance;
+  get(endpoint: string, params?: { [key: string]: string | number | boolean }) {
+    return requests.get(this.axiosInstance, endpoint, params);
+  }
+
+  post(
+    endpoint: string,
+    params?: { [key: string]: string | number | boolean }
+  ) {
+    return requests.post(this.axiosInstance, endpoint, params);
+  }
+
+  put(endpoint: string, params?: { [key: string]: string | number | boolean }) {
+    return requests.put(this.axiosInstance, endpoint, params);
+  }
+
+  delete(
+    endpoint: string,
+    params?: { [key: string]: string | number | boolean }
+  ) {
+    return requests.delete(this.axiosInstance, endpoint, params);
   }
 }
