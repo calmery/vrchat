@@ -2,7 +2,7 @@ import { resolve } from "url";
 import { VRCHAT_API_BASE_URL } from "./constants";
 import axios, { AxiosInstance } from "axios";
 
-const generateRequestURL = (endpoint: string) => {
+export const generateRequestURL = (endpoint: string) => {
   return resolve(VRCHAT_API_BASE_URL, endpoint);
 };
 
