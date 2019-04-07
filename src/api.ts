@@ -87,27 +87,17 @@ export const login = async (
   apiKey: string,
   username: string,
   password: string
-): Promise<AxiosInstance | null> => {
-  try {
-    const { headers } = await requestBuilder.login(apiKey, username, password);
+): Promise<AxiosInstance> => {
+  // If the status code is 401, API key may be invalid or authentication may have failed.
+  const { headers } = await requestBuilder.login(apiKey, username, password);
 
-    if (!headers.hasOwnProperty("set-cookie")) {
-      return null;
-    }
-
-    return generateAxiosInstanceByCookie(headers["set-cookie"]);
-  } catch {
-    // If the status code is 401, API key may be invalid.
-    return null;
+  if (!headers.hasOwnProperty("set-cookie")) {
+    throw new Error("Cookie does not exist");
   }
+
+  return generateAxiosInstanceByCookie(headers["set-cookie"]);
 };
 
 export const logout = async (axiosInstance: AxiosInstance) => {
-  try {
-    await requestBuilder.logout(axiosInstance);
-
-    return true;
-  } catch {
-    return false;
-  }
+  await requestBuilder.logout(axiosInstance);
 };
