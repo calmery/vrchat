@@ -1,9 +1,8 @@
-import { resolve } from "url";
 import { VRCHAT_API_BASE_URL } from "./constants";
 import axios, { AxiosInstance } from "axios";
 
 export const generateRequestURL = (endpoint: string) => {
-  return resolve(VRCHAT_API_BASE_URL, endpoint);
+  return `${VRCHAT_API_BASE_URL}${endpoint}`;
 };
 
 export const login = (apiKey: string, username: string, password: string) => {
