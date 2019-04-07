@@ -14,34 +14,20 @@ export class VRChat {
 
   async login(username: string, password: string) {
     if (this.axiosInstance !== null) {
-      return true;
+      return;
     }
 
-    const axiosInstance = await login(this.apiKey, username, password);
-
-    if (axiosInstance === null) {
-      return false;
-    }
-
-    this.axiosInstance = axiosInstance;
-
-    return true;
+    this.axiosInstance = await login(this.apiKey, username, password);
   }
 
   async logout() {
     if (this.axiosInstance === null) {
-      return true;
+      return;
     }
 
-    const logoutResult = await logout(this.axiosInstance);
-
-    if (!logoutResult) {
-      return false;
-    }
+    await logout(this.axiosInstance);
 
     this.axiosInstance = null;
-
-    return true;
   }
 
   get(endpoint: string, params?: { [key: string]: string | number | boolean }) {
