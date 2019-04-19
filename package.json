@@ -5,9 +5,11 @@
   "author": "Marei Kikukawa <contact@marei.jp>",
   "bugs": "https://github.com/calmery/VRChatJS/issues",
   "dependencies": {
-    "axios": "0.18.0"
+    "axios": "0.18.0",
+    "cookie": "0.3.1"
   },
   "devDependencies": {
+    "@types/cookie": "0.3.2",
     "@types/jest": "24.0.11",
     "@typescript-eslint/eslint-plugin": "1.6.0",
     "@typescript-eslint/parser": "1.6.0",
