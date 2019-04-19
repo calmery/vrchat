@@ -1,13 +1,25 @@
 import axios, { AxiosResponse, AxiosInstance } from "axios";
+import cookie from "cookie";
 import { VRChatConfig } from "./types";
 import * as requestBuilder from "./requestBuilder";
 import { VRCHAT_API_BASE_URL } from "./constants";
 
-const generateAxiosInstanceByCookie = (cookie: string[]) => {
+const generateAxiosInstanceByCookie = (cookies: string[]) => {
+  const { auth, apiKey } = cookies
+    .map(string => cookie.parse(string))
+    .reduce((xs, ys) => ({ ...xs, ...ys }));
+
+  if (auth === undefined || apiKey === undefined) {
+    throw new Error("Cookie (auth or apiKey) does not exist");
+  }
+
   return axios.create({
     baseURL: VRCHAT_API_BASE_URL,
     headers: {
-      Cookie: cookie
+      Cookie: [
+        cookie.serialize("apiKey", apiKey),
+        cookie.serialize("auth", auth)
+      ]
     }
   });
 };
