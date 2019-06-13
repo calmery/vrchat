@@ -22,7 +22,7 @@
     "prettier": "1.17.0",
     "rimraf": "2.6.3",
     "ts-jest": "24.0.2",
-    "typescript": "3.4.5"
+    "typescript": "3.5.2"
   },
   "engine": {
     "node": "10.15.3",
