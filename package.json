@@ -6,10 +6,10 @@
   "bugs": "https://github.com/calmery/VRChatJS/issues",
   "dependencies": {
     "axios": "0.18.1",
-    "cookie": "0.3.1"
+    "cookie": "0.4.0"
   },
   "devDependencies": {
-    "@types/cookie": "0.3.2",
+    "@types/cookie": "0.3.3",
     "@types/jest": "24.0.15",
     "@typescript-eslint/eslint-plugin": "1.7.0",
     "@typescript-eslint/parser": "1.7.0",
