@@ -5,7 +5,7 @@
   "author": "Marei Kikukawa <contact@marei.jp>",
   "bugs": "https://github.com/calmery/VRChatJS/issues",
   "dependencies": {
-    "axios": "0.18.0",
+    "axios": "0.18.1",
     "cookie": "0.3.1"
   },
   "devDependencies": {
