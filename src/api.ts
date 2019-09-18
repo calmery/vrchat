@@ -52,7 +52,7 @@ export const login = async (
   // If the status code is 401, API key may be invalid or authentication may have failed.
   const { headers } = await requestBuilder.login(apiKey, username, password);
 
-  if (!headers.hasOwnProperty("set-cookie")) {
+  if (headers("set-cookie") === undefined) {
     throw new Error("Cookie does not exist");
   }
 
