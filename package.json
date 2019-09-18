@@ -1,7 +1,7 @@
 {
   "name": "vrchat",
   "description": "Unofficial VRChat API",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Marei Kikukawa <contact@calmery.me>",
   "bugs": "https://github.com/calmery/VRChatJS/issues",
   "dependencies": {
