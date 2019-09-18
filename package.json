@@ -10,18 +10,18 @@
   },
   "devDependencies": {
     "@types/cookie": "0.3.3",
-    "@types/jest": "24.0.15",
+    "@types/jest": "24.0.18",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
     "eslint": "5.16.0",
     "eslint-config-prettier": "4.3.0",
     "eslint-plugin-prettier": "3.1.1",
     "husky": "2.7.0",
-    "jest": "24.8.0",
+    "jest": "24.9.0",
     "lint-staged": "8.2.1",
     "prettier": "1.18.2",
     "rimraf": "2.6.3",
-    "ts-jest": "24.0.2",
+    "ts-jest": "24.1.0",
     "typescript": "3.6.3"
   },
   "engine": {
