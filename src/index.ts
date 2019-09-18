@@ -39,33 +39,30 @@ export class VRChat {
     return this.axiosInstance.get(generateRequestURL(endpoint), { params });
   }
 
-  post(
-    endpoint: string,
-    params?: { [key: string]: string | number | boolean }
-  ) {
+  post(endpoint: string, data?: { [key: string]: string | number | boolean }) {
     if (this.axiosInstance === null) {
       throw new Error("Authentication required");
     }
 
-    return this.axiosInstance.post(generateRequestURL(endpoint), { params });
+    return this.axiosInstance.post(generateRequestURL(endpoint), data);
   }
 
-  put(endpoint: string, params?: { [key: string]: string | number | boolean }) {
+  put(endpoint: string, data?: { [key: string]: string | number | boolean }) {
     if (this.axiosInstance === null) {
       throw new Error("Authentication required");
     }
 
-    return this.axiosInstance.put(generateRequestURL(endpoint), { params });
+    return this.axiosInstance.put(generateRequestURL(endpoint), data);
   }
 
   delete(
     endpoint: string,
-    params?: { [key: string]: string | number | boolean }
+    data?: { [key: string]: string | number | boolean }
   ) {
     if (this.axiosInstance === null) {
       throw new Error("Authentication required");
     }
 
-    return this.axiosInstance.delete(generateRequestURL(endpoint), { params });
+    return this.axiosInstance.delete(generateRequestURL(endpoint), { data });
   }
 }
