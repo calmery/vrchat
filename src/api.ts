@@ -19,7 +19,7 @@ const generateAxiosInstanceByCookie = (cookies: string[]) => {
       Cookie: [
         cookie.serialize("apiKey", apiKey),
         cookie.serialize("auth", auth)
-      ]
+      ].join(";")
     }
   });
 };
