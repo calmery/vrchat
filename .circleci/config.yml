@@ -3,7 +3,7 @@ version: 2
 jobs:
   setup:
     docker:
-      - image: circleci/node:10.16.3
+      - image: circleci/node:10.19.0
 
     working_directory: ~/node
 
@@ -27,7 +27,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/node:10.16.3
+      - image: circleci/node:10.19.0
 
     working_directory: ~/node
 
@@ -43,7 +43,7 @@ jobs:
 
   build:
     docker:
-      - image: circleci/node:10.16.3
+      - image: circleci/node:10.19.0
 
     working_directory: ~/node
 
