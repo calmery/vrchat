@@ -1,0 +1,30 @@
+jobs:
+  release:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.16.0"
+      - uses: actions/cache@v2
+        with:
+          key: "${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}"
+          path: "**/node_modules"
+      - run: "npm ci"
+      - run: "npm run build"
+      - env:
+          GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
+          GIT_AUTHOR_EMAIL: 12670155+calmery@users.noreply.github.com
+          GIT_AUTHOR_NAME: calmery
+          GIT_COMMITTER_EMAIL: 12670155+calmery@users.noreply.github.com
+          GIT_COMMITTER_NAME: calmery
+          NPM_TOKEN: "${{ secrets.NPM_TOKEN }}"
+        run: "npx semantic-release"
+
+name: Release
+
+on:
+  push:
+    branches:
+      - master
