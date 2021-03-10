@@ -21,6 +21,9 @@
     "node": ">=14.15.0 <15",
     "npm": ">=7.0.0 <8"
   },
+  "files": [
+    "build"
+  ],
   "homepage": "https://github.com/calmery/vrchat#readme",
   "keywords": [
     "vrchat"
@@ -28,7 +31,6 @@
   "license": "MIT",
   "main": "build",
   "name": "vrchat",
-  "private": true,
   "repository": "github:calmery/vrchat",
   "scripts": {
     "build": "rimraf build && tsc",
