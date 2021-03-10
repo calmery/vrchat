@@ -26,6 +26,7 @@
     "vrchat"
   ],
   "license": "MIT",
+  "main": "build",
   "name": "vrchat",
   "private": true,
   "repository": "github:calmery/vrchat",
