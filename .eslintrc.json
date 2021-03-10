@@ -14,14 +14,7 @@
   "plugins": ["@typescript-eslint"],
   "root": true,
   "rules": {
-    "import/order": [
-      "error",
-      {
-        "alphabetize": {
-          "order": "asc"
-        }
-      }
-    ]
+    "import/order": ["error", { "alphabetize": { "order": "asc" } }]
   },
   "settings": {
     "import/resolver": {
