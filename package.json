@@ -4,6 +4,14 @@
   "description": "Unofficial VRChat API Client",
   "devDependencies": {
     "@types/node": "14.14.33",
+    "@typescript-eslint/eslint-plugin": "4.17.0",
+    "@typescript-eslint/parser": "4.17.0",
+    "eslint": "7.21.0",
+    "eslint-config-prettier": "8.1.0",
+    "eslint-import-resolver-typescript": "2.4.0",
+    "eslint-plugin-import": "2.22.1",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.2.1",
     "rimraf": "3.0.2",
     "typescript": "4.2.3"
   },
@@ -21,6 +29,12 @@
   "repository": "github:calmery/vrchat",
   "scripts": {
     "build": "rimraf build && tsc",
+    "fix": "run-s fix:eslint fix:prettier",
+    "fix:eslint": "npm run lint:eslint -- --fix",
+    "fix:prettier": "npm run lint:prettier -- --write",
+    "lint": "run-p lint:*",
+    "lint:eslint": "eslint --ext .ts --ext .tsx --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check --ignore-path .gitignore .",
     "watch": "tsc -w"
   },
   "version": "0.0.0"
