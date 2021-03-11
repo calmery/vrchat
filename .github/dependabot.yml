@@ -8,7 +8,7 @@ updates:
           - ">=5.0.0"
     package-ecosystem: npm
     schedule:
-      interval: daily
+      interval: monthly
     target-branch: develop
 
 version: 2
