@@ -24,7 +24,7 @@ export const login = async (username: string, password: string) => {
   try {
     const { data, headers } = await createAxios().get<{
       requiresTwoFactorAuth?: VRChatTFAMethod[];
-    }>("user", {
+    }>("auth/user", {
       auth: { username, password },
     });
 
@@ -66,7 +66,7 @@ export const verifyTfa = async (
   }
 
   try {
-    await post(auth, `twofactorauth/${method}/verify`, { code });
+    await post(auth, `auth/twofactorauth/${method}/verify`, { code });
   } catch (error) {
     if (isAxiosError(error) && error.response?.status === 400) {
       throw new VRChatAuthenticationError("That code didn't work");
@@ -190,10 +190,7 @@ export class VRChat {
 
   //
 
-  delete(
-    pathname: Parameters<typeof delete_>[1],
-    payload: Parameters<typeof delete_>[2]
-  ) {
+  delete(pathname: string, payload?: Record<string, unknown>) {
     if (!this.auth) {
       throw new VRChatUnauthenticatedError();
     }
@@ -201,7 +198,7 @@ export class VRChat {
     return delete_(this.auth, pathname, payload);
   }
 
-  get(pathname: Parameters<typeof get>[1], payload: Parameters<typeof get>[2]) {
+  get(pathname: string, payload?: Record<string, unknown>) {
     if (!this.auth) {
       throw new VRChatUnauthenticatedError();
     }
@@ -209,10 +206,7 @@ export class VRChat {
     return get(this.auth, pathname, payload);
   }
 
-  post(
-    pathname: Parameters<typeof post>[1],
-    payload: Parameters<typeof post>[2]
-  ) {
+  post(pathname: string, payload?: Record<string, unknown>) {
     if (!this.auth) {
       throw new VRChatUnauthenticatedError();
     }
@@ -220,7 +214,7 @@ export class VRChat {
     return post(this.auth, pathname, payload);
   }
 
-  put(pathname: Parameters<typeof put>[1], payload: Parameters<typeof put>[2]) {
+  put(pathname: string, payload?: Record<string, unknown>) {
     if (!this.auth) {
       throw new VRChatUnauthenticatedError();
     }
@@ -246,3 +240,5 @@ export class VRChat {
     return vrchat;
   }
 }
+
+export { VRChatTFAMethod };

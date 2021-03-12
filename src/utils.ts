@@ -3,7 +3,7 @@ import * as cookie from "cookie";
 
 export const createAxios = (auth?: string) => {
   return axios.create({
-    baseURL: "https://vrchat.com/api/1/auth/",
+    baseURL: "https://vrchat.com/api/1/",
     headers: auth ? { cookie: cookie.serialize("auth", auth) } : undefined,
     params: {
       apiKey: "JlE5Jldo5Jibnk5O5hTx6XVqsJu4WJ26",
