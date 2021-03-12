@@ -28,6 +28,7 @@ export const getAuth = (headers: {
   return auth;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isAxiosError = (error: any): error is AxiosError => {
   return !!error.isAxiosError;
 };
