@@ -60,5 +60,5 @@
     "lint:prettier": "prettier --check --ignore-path .gitignore .",
     "watch": "tsc -w"
   },
-  "version": "0.0.5"
+  "version": "0.1.0"
 }
