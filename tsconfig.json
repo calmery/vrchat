@@ -18,7 +18,7 @@
     "removeComments": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2020"
+    "target": "ES2019"
   },
   "include": ["src/**/*"]
 }
