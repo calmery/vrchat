@@ -19,7 +19,7 @@
     "@semantic-release/release-notes-generator": "9.0.2",
     "@types/cookie": "0.4.0",
     "@types/node": "14.14.37",
-    "@typescript-eslint/eslint-plugin": "4.17.0",
+    "@typescript-eslint/eslint-plugin": "4.20.0",
     "@typescript-eslint/parser": "4.20.0",
     "commitizen": "4.2.3",
     "cz-conventional-changelog": "3.3.0",
