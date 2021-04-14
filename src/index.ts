@@ -82,13 +82,14 @@ export const verifyTfa = async (
     const { headers } = await createAxios(
       auth
     ).post(`auth/twofactorauth/${method}/verify`, { code });
+
     const twoFactorAuth = getHeaderByKey(headers, "twoFactorAuth");
 
     if (!twoFactorAuth) {
       throw new VRChatAuthenticationError("TwoFactorAuth cookie not found");
     }
 
-    return twoFactorAuth;
+    return { twoFactorAuth };
   } catch (error) {
     if (isAxiosError(error) && error.response?.status === 400) {
       throw new VRChatAuthenticationError("That code didn't work");
@@ -211,7 +212,9 @@ export class VRChat {
       throw new VRChatUnauthenticatedError();
     }
 
-    this.twoFactorAuth = await verifyTfa(this.auth, method, code);
+    const { twoFactorAuth } = await verifyTfa(this.auth, method, code);
+
+    this.twoFactorAuth = twoFactorAuth;
   }
 
   //
