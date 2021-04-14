@@ -29,7 +29,7 @@ export const isTfaMethod = (
 export const login = async (
   username: string,
   password: string,
-  { twoFactorAuth }: { twoFactorAuth?: string }
+  { twoFactorAuth }: { twoFactorAuth?: string } | undefined = {}
 ) => {
   try {
     const { data, headers } = await createAxios().get<{
