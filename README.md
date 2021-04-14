@@ -11,3 +11,32 @@ Unofficial VRChat API Client 🤫
 ```
 $ npm i vrchat
 ```
+
+## Usage
+
+```ts
+import { VRChat, VRChatTFAMethod } from "vrchat";
+
+const main = async () => {
+  const vrchat = new VRChat();
+
+  const tfa = await vrchat.login(
+    process.env.VRCHAT_USERNAME,
+    process.env.VRCHAT_PASSWORD
+  );
+
+  if (tfa && tfa.includes(VRChatTFAMethod.TimeBasedOneTimePassword)) {
+    await vrchat.verifyTfa(
+      VRChatTFAMethod.TimeBasedOneTimePassword,
+      process.env.VRCHAT_TFA_CODE
+    );
+  }
+
+  console.log(vrchat.auth);
+  console.log(vrchat.twoFactorAuth);
+
+  // await vrchat.get("...");
+};
+
+main();
+```
