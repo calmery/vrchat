@@ -47,8 +47,6 @@ export const login = async (
       throw new VRChatAuthenticationError("Auth cookie not found");
     }
 
-    console.log(data);
-
     return {
       auth,
       tfa: data.requiresTwoFactorAuth || undefined,
