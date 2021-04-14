@@ -1,5 +1,11 @@
+import * as cookie from "cookie";
 import { VRChatTFAMethod } from "./types";
-import { createAxios, getAuth, isAxiosError, validateTfaCode } from "./utils";
+import {
+  createAxios,
+  getHeaderByKey,
+  isAxiosError,
+  validateTfaCode,
+} from "./utils";
 
 // Errors
 
@@ -20,19 +26,28 @@ export const isTfaMethod = (
   ] as string[]).includes(maybeVRChatTFAMethod);
 };
 
-export const login = async (username: string, password: string) => {
+export const login = async (
+  username: string,
+  password: string,
+  { twoFactorAuth }: { twoFactorAuth?: string }
+) => {
   try {
     const { data, headers } = await createAxios().get<{
       requiresTwoFactorAuth?: VRChatTFAMethod[];
     }>("auth/user", {
       auth: { username, password },
+      headers: twoFactorAuth
+        ? { cookie: cookie.serialize("twoFactorAuth", twoFactorAuth) }
+        : undefined,
     });
 
-    const auth = getAuth(headers);
+    const auth = getHeaderByKey(headers, "auth");
 
     if (!auth) {
       throw new VRChatAuthenticationError("Auth cookie not found");
     }
+
+    console.log(data);
 
     return {
       auth,
@@ -66,7 +81,16 @@ export const verifyTfa = async (
   }
 
   try {
-    await post(auth, `auth/twofactorauth/${method}/verify`, { code });
+    const { headers } = await createAxios(
+      auth
+    ).post(`auth/twofactorauth/${method}/verify`, { code });
+    const twoFactorAuth = getHeaderByKey(headers, "twoFactorAuth");
+
+    if (!twoFactorAuth) {
+      throw new VRChatAuthenticationError("TwoFactorAuth cookie not found");
+    }
+
+    return twoFactorAuth;
   } catch (error) {
     if (isAxiosError(error) && error.response?.status === 400) {
       throw new VRChatAuthenticationError("That code didn't work");
@@ -158,13 +182,17 @@ export const put = async <T extends Record<string, unknown>>(
 
 export class VRChat {
   private _auth: string | null = null;
+  private _twoFactorAuth: string | null = null;
 
   async login(username: string, password: string) {
     if (this.auth) {
       throw new VRChatAuthenticationError("You are already logged in");
     }
 
-    const { auth, tfa } = await login(username, password);
+    const { auth, tfa } = await login(username, password, {
+      twoFactorAuth: this.twoFactorAuth || undefined,
+    });
+
     this.auth = auth;
 
     return tfa;
@@ -185,7 +213,7 @@ export class VRChat {
       throw new VRChatUnauthenticatedError();
     }
 
-    await verifyTfa(this.auth, method, code);
+    this.twoFactorAuth = await verifyTfa(this.auth, method, code);
   }
 
   //
@@ -230,6 +258,14 @@ export class VRChat {
 
   set auth(auth: string | null) {
     this._auth = auth;
+  }
+
+  get twoFactorAuth() {
+    return this._twoFactorAuth;
+  }
+
+  set twoFactorAuth(twoFactorAuth: string | null) {
+    this._twoFactorAuth = twoFactorAuth;
   }
 
   static from(auth: string) {

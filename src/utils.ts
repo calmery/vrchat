@@ -11,21 +11,22 @@ export const createAxios = (auth?: string) => {
   });
 };
 
-export const getAuth = (headers: {
-  "set-cookie": string[] | undefined;
-}): string | undefined => {
+export const getHeaderByKey = (
+  headers: {
+    "set-cookie": string[] | undefined;
+  },
+  key: string
+): string | undefined => {
   // Reference: https://github.com/axios/axios/blob/62d625603916115691bcea2842c5d6e331279b99/lib/helpers/parseHeaders.js#L45
   const cookies: string[] = headers["set-cookie"] || [];
 
-  const { auth } = cookies.reduce(
+  return (cookies.reduce(
     (previous, current) => ({
       ...previous,
       ...cookie.parse(current),
     }),
     {}
-  ) as { auth?: string };
-
-  return auth;
+  ) as { [key: string]: string })[key];
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
