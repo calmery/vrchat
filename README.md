@@ -40,3 +40,33 @@ const main = async () => {
 
 main();
 ```
+
+```ts
+import { VRChatTFAMethod, login, verifyTfa } from "vrchat";
+
+const main = async () => {
+  let twoFactorAuth: string;
+
+  const { auth, tfa } = await login(
+    process.env.VRCHAT_USERNAME,
+    process.env.VRCHAT_PASSWORD
+  );
+
+  if (tfa && tfa.includes(VRChatTFAMethod.TimeBasedOneTimePassword)) {
+    const { twoFactorAuth: _twoFactorAuth } = await verifyTfa(
+      auth,
+      VRChatTFAMethod.TimeBasedOneTimePassword,
+      process.env.VRCHAT_TFA_CODE
+    );
+
+    twoFactorAuth = _twoFactorAuth;
+  }
+
+  console.log(auth);
+  console.log(twoFactorAuth);
+
+  // await vrchat.get("...");
+};
+
+main();
+```
