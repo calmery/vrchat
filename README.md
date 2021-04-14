@@ -45,7 +45,7 @@ main();
 import { VRChatTFAMethod, login, verifyTfa } from "vrchat";
 
 const main = async () => {
-  let twoFactorAuth: string;
+  let twoFactorAuth: string | undefined = undefined;
 
   const { auth, tfa } = await login(
     process.env.VRCHAT_USERNAME,
