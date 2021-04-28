@@ -6,6 +6,11 @@
 
 Unofficial VRChat API Client 🤫
 
+## ToDo
+
+- [x] 2FA
+- [ ] Type Definition
+
 ## Installation
 
 ```
