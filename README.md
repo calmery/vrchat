@@ -8,8 +8,10 @@ Unofficial VRChat API Client 🤫
 
 ## Installation
 
+Notice: This npm package has been replaced by [vrchatapi/vrchatapi-javascript](https://github.com/vrchatapi/vrchatapi-javascript) since version 1.0.0.
+
 ```
-$ npm i vrchat
+$ npm i vrchat@0.2.0
 ```
 
 ## Usage
