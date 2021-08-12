@@ -6,6 +6,12 @@
 
 Unofficial VRChat API Client 🤫
 
+## ToDo
+
+- [x] 2FA
+- [ ] Type Definition
+- [ ] Add Examples ([WIP: Next.js](https://github.com/calmery/vrchat/tree/feature/add-next.js-example))
+
 ## Installation
 
 Notice: This npm package has been replaced by [vrchatapi/vrchatapi-javascript](https://github.com/vrchatapi/vrchatapi-javascript) since version 1.0.0.
@@ -47,7 +53,7 @@ main();
 import { VRChatTFAMethod, login, verifyTfa } from "vrchat";
 
 const main = async () => {
-  let twoFactorAuth: string;
+  let twoFactorAuth: string | undefined = undefined;
 
   const { auth, tfa } = await login(
     process.env.VRCHAT_USERNAME,
